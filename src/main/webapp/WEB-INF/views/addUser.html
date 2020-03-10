@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add user</title>
+
+  <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+<p>Добавление пользователя</p>
+
+<form action="#" th:action="@{/user/add}" method="post">
+  <div class="form-group">
+    <label for="id_test">Настоящие ФИО:</label>
+    <input type="text"  class="form-control"  th:text="100500" id="id_test" placeholder="test" />
+  </div>
+  <div class="form-group">
+    <label for="realName">Настоящие ФИО:</label>
+    <input type="text"  class="form-control"  th:field="*{user.realName}" id="realName" placeholder="ФИО" />
+  </div>
+  <div class="form-group">
+    <label for="nickName">Ник (псевдоним) на сайте:</label>
+    <input type="text"  class="form-control"  th:field="*{user.nickName}" id="nickName" placeholder="Ник" />
+  </div>
+  <div class="form-group">
+    <label for="password">Пароль аккаунта:</label>
+    <input type="text"  class="form-control"  th:field="*{user.password}" id="password" placeholder="Пароль" />
+  </div>
+  <div class="form-group">
+    <label for="imgPhotoPath">Путь к фото пользователя:</label>
+    <input type="text"  class="form-control"  th:field="*{user.imgPhotoPath}" id="imgPhotoPath" placeholder="Фото" />
+  </div>
+  <div class="form-group">
+    <label for="imgBackgroundPath">Путь к картинке для заднего фона:</label>
+    <input type="text"  class="form-control"  th:field="*{user.imgBackgroundPath}" id="imgBackgroundPath" placeholder="Задний фон" />
+  </div>
+  <div class="form-group">
+    <label for="imgGarageViewPath">Путь к картинке для фона гаража:</label>
+    <input type="text"  class="form-control"  th:field="*{user.imgGarageViewPath}" id="imgGarageViewPath" placeholder="Фон гаража" />
+  </div>
+  <div class="form-group">
+    <label for="email">Электронный адрес пользователя:</label>
+    <input type="text"  class="form-control"  th:field="*{user.email}" id="email" placeholder="email" />
+  </div>
+  <div class="form-group">
+    <label for="gender">Пол пользователя:</label>
+    <input type="text"  class="form-control"  th:field="*{user.gender}" id="gender" placeholder="Пол пользователя" />
+  </div>
+  <div class="form-group">
+     <label for="birthDay">День рождения пользователя:</label>
+     <input type="datetime-local"  class="form-control"  th:field="*{user.birthDay}" id="birthDay" placeholder="День рождения пользователя" />
+   </div>
+   <div class="form-group">
+     <label for="place">Регион:</label>
+     <input type="text"  class="form-control"  th:field="*{user.place}" id="place" placeholder="Регион" />
+   </div>
+   <div class="form-group">
+     <label for="region">Местоположение:</label>
+     <input type="text"  class="form-control"  th:field="*{user.region}" id="region" placeholder="Местоположение" />
+   </div>
+   <div class="form-group">
+     <label for="command">Команда:</label>
+     <input type="text"  class="form-control"  th:field="*{user.command}" id="command" placeholder="Команда" />
+   </div>
+   <div class="form-group">
+     <label for="reputation">Репутация:</label>
+     <input type="text"  class="form-control"  th:field="*{user.reputation}" id="reputation" placeholder="Репутация" />
+   </div>
+   <div class="form-group">
+     <label for="displayView">Отображение в профиле(0 - Реальное имя, 1 - Псевдоним):</label>
+     <input type="text"  class="form-control"  th:field="*{user.displayView}" id="displayView" placeholder="Вид профиля" />
+   </div>
+   <div class="form-group">
+     <label for="sound">Звук на сайте(0 - Выключено, >1 - включено):</label>
+     <input type="text"  class="form-control"  th:field="*{user.sound}" id="sound" placeholder="Звук" />
+   </div>
+   <div class="form-group">
+     <label for="music">Музыка на сайте(0 - Выключено, >1 - включено):</label>
+     <input type="text"  class="form-control"  th:field="*{user.music}" id="music" placeholder="Музыка" />
+   </div>
+   <div class="form-group">
+     <label for="graphicLevel">Уровень графики:</label>
+     <input type="text"  class="form-control"  th:field="*{user.graphicLevel}" id="graphicLevel" placeholder="Графика" />
+   </div>
+   <div class="form-group">
+     <label for="id_disciplineT">Номер предпочитаемой дисциплины:</label>
+     <input type="text"  class="form-control"  th:field="*{user.id_disciplineT}" id="id_disciplineT" placeholder="Дисциплина" />
+   </div>
+   <div class="form-group">
+     <label for="sendDisciplineResults">Оповещения о новых результатах в предпочитаемой дисциплине (0 - выкл, 1 - уведомления на сайте, 2 - уведомления на сайте и на почте):</label>
+     <input type="text"  class="form-control"  th:field="*{user.sendDisciplineResults}" id="sendDisciplineResults" placeholder="Оповещения (дисциплина)" />
+   </div>
+   <div class="form-group">
+     <label for="sendFriendResults">Оповещения о результатах друзей (0 - выкл, 1 - уведомления на сайте, 2 - уведомления на сайте и на почте):</label>
+     <input type="text"  class="form-control"  th:field="*{user.sendFriendResults}" id="sendFriendResults" placeholder="Оповещения (друзья)" />
+   </div>
+   <div class="form-group">
+     <label for="sendNewEventInfo">Оповещения о новых Мероприятиях (0 - выкл, 1 - уведомления на сайте, 2 - уведомления на сайте и на почте):</label>
+     <input type="text"  class="form-control"  th:field="*{user.sendNewEventInfo}" id="sendNewEventInfo" placeholder="Оповещения (мероприятия)" />
+   </div>
+   <div class="form-group">
+     <label for="activityZone">Зона активности:</label>
+     <input type="text"  class="form-control"  th:field="*{user.activityZone}" id="activityZone" placeholder="Зона активности" />
+   </div>
+
+
+  <button type="submit" th:value="Save" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="/webjars/jquery/3.4.1/jquery.js"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

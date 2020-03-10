@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>System MVC app</title>
 
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
@@ -27,15 +27,24 @@
     </tr>
     </tbody>
 </table>
-<form action="#" th:action="@{/}" th:object="${brand}"
+<select>
+    <option th:each="thisBrand: ${carBrands}">
+        <span th:text="${thisBrand.name}"> name </span></option>
+</select>
+
+<form action="#" th:action="@{/car/addBrand}" <!--th:object="${brand}-->"
       method="post">
+    <select>
+        <option th:each="thisAchievement: ${achievements}" th:value="${thisAchievement.id}">
+            <span th:text="${thisAchievement.name}"> name </span></option>
+    </select>
     <div class="form-group">
         <label for="id">id:</label>
-        <input type="text"  class="form-control"  th:field="*{id}" id="id" placeholder="enter id" />
+        <input type="text"  class="form-control"  th:field="*{brand.id}" id="id" placeholder="enter id" />
     </div>
     <div class="form-group">
         <label for="name">mark:</label>
-        <input type="text"  class="form-control"  th:field="*{name}" id="name" placeholder="enter mark"/>
+        <input type="text"  class="form-control"  th:field="*{brand.name}" id="name" placeholder="enter mark"/>
     </div>
     <button type="submit" th:value="Save" class="btn btn-primary">Submit</button>
 </form>

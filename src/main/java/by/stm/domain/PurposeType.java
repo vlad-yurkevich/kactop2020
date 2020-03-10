@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+//--Цель встречи
 public class PurposeType {
     private int id;
     private String name;

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,8 @@ public class User {
     private String imgGarageViewPath; //--Картинка для гаража
     private String email; //--Электронный адрес пользователя
     private int gender; //--Пол(0 - мужской, 1 - женский)
-    private Date birthDay; //--Дата рождения
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date birthDay = new Date(); //--Дата рождения
     private String region; //--Регион ?
     private String place; //--Местоположение ?
     private String command; //--Команда ?

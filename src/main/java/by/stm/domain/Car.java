@@ -27,5 +27,5 @@ public class Car {
     private int id_prevailingColorT; //--Цвет
     private String imgCarPath; //--Путь к фото авто
     //--Основной автомобиль
-    private boolean isPrimary;
+    private int isPrimary; //--1 - основной
 }

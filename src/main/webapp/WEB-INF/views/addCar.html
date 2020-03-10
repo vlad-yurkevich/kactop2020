@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add car</title>
+
+  <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+<p>Добавление автомобиля</p>
+
+<form action="#" th:action="@{/car/add}" method="post">
+  <div class="form-group">
+    <label for="id_modelT">Модель:</label>
+    <input type="text"  class="form-control"  th:field="*{car.id_modelT}" id="id_modelT" placeholder="Номер модели" />
+  </div>
+    <div class="form-group">
+        <label for="name">Название:</label>
+        <input type="text"  class="form-control"  th:field="*{car.name}" id="name" placeholder="Название" />
+    </div>
+    <div class="form-group">
+        <label for="id_driveT">Привод:</label>
+        <input type="text"  class="form-control"  th:field="*{car.id_driveT}" id="id_driveT" placeholder="Название" />
+    </div>
+    <div class="form-group">
+        <label for="volume">Объём двигателя:</label>
+        <input type="text"  class="form-control"  th:field="*{car.volume}" id="volume" placeholder="объём" />
+    </div>
+    <div class="form-group">
+        <label for="id_engineT">Двигатель (бензин/дизель...):</label>
+        <input type="text"  class="form-control"  th:field="*{car.id_engineT}" id="id_engineT" placeholder="Двигатель (топливо)" />
+    </div>
+    <div class="form-group">
+        <label for="estimatedPower">Расчётная мощность:</label>
+        <input type="text"  class="form-control"  th:field="*{car.estimatedPower}" id="estimatedPower" placeholder="Расчётная мощность" />
+    </div>
+    <div class="form-group">
+        <label for="year">Год выпуска:</label>
+        <input type="text"  class="form-control"  th:field="*{car.year}" id="year" placeholder="Год выпуска" />
+    </div>
+    <div class="form-group">
+        <label for="id_accelerationT">Модуль ускорения:</label>
+        <input type="text"  class="form-control"  th:field="*{car.id_accelerationT}" id="id_accelerationT" placeholder="Ускорение" />
+    </div>
+    <div class="form-group">
+        <label for="id_boostT">Наддув:</label>
+        <input type="text"  class="form-control"  th:field="*{car.id_boostT}" id="id_boostT" placeholder="Наддув" />
+    </div>
+    <div class="form-group">
+        <label for="id_gearBoxT">Тип трансмиссии:</label>
+        <input type="text"  class="form-control"  th:field="*{car.id_gearBoxT}" id="id_gearBoxT" placeholder="Трансмиссия" />
+    </div>
+    <div class="form-group">
+        <label for="id_prevailingColorT">Основной цвет:</label>
+        <input type="text"  class="form-control"  th:field="*{car.id_prevailingColorT}" id="id_prevailingColorT" placeholder="Цвет" />
+    </div>
+    <div class="form-group">
+        <label for="imgCarPath">Путь к фото автомобиля:</label>
+        <input type="text"  class="form-control"  th:field="*{car.imgCarPath}" id="imgCarPath" placeholder="Фото авто" />
+    </div>
+    <div class="form-group">
+        <label for="isPrimary">Основной автомобиль:</label>
+        <input type="text"  class="form-control"  th:field="*{car.isPrimary}" id="isPrimary" placeholder="Основной" />
+    </div>
+
+    <button type="submit" th:value="Save" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="/webjars/jquery/3.4.1/jquery.js"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
