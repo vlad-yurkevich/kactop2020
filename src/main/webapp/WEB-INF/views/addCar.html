@@ -7,56 +7,95 @@
 
   <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
   <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <style>
+        select {
+            width: 300px; /* Ширина списка в пикселах */
+        }
+    </style>
 </head>
 
 <body>
 
 <p>Добавление автомобиля</p>
 
-<form action="#" th:action="@{/car/add}" method="post">
-  <div class="form-group">
-    <label for="id_modelT">Модель:</label>
-    <input type="text"  class="form-control"  th:field="*{car.id_modelT}" id="id_modelT" placeholder="Номер модели" />
-  </div>
+<form action="#" th:action="@{/car/refresh}" method="post" id="MyForm">
     <div class="form-group">
-        <label for="name">Название:</label>
-        <input type="text"  class="form-control"  th:field="*{car.name}" id="name" placeholder="Название" />
+        <label for="id_brand">Марка:</label>
+        <select name="id_brand" id="id_brand" onchange="document.getElementById('MyForm').submit()">
+            <option th:each="thisbrand: ${carBrand}" th:value="${thisbrand.id}" th:selected="${thisbrand.id} == ${id_brand}">
+                <span th:text="${thisbrand.name}"> name </span></option>
+        </select>
+    </div>
+    <div class="form-group" th:if="${model_id != 0}">
+        <label for="id_modelT">Модель:</label>
+        <select name="id_modelT" id="id_modelT">
+            <option th:each="thismodel: ${CarModel}" th:value="${thismodel.id}">
+                <span th:text="${thismodel.name}"> name </span></option>
+        </select>
     </div>
     <div class="form-group">
+        <label for="name">Отображаемое на сайте название:</label>
+        <input type="text"  class="form-control"  th:field="*{car.name}" id="name" placeholder="Название" />
+    </div>
+    <div class="form-group" >
         <label for="id_driveT">Привод:</label>
-        <input type="text"  class="form-control"  th:field="*{car.id_driveT}" id="id_driveT" placeholder="Название" />
+        <select name="id_driveT" id="id_driveT">
+            <option th:each="thiswheeldrive: ${carWheelDrive}" th:value="${thiswheeldrive.id}" th:selected="${thiswheeldrive.id} == ${id_wheeldrive}">
+                <span th:text="${thiswheeldrive.name}"> name </span></option>
+        </select>
     </div>
     <div class="form-group">
         <label for="volume">Объём двигателя:</label>
-        <input type="text"  class="form-control"  th:field="*{car.volume}" id="volume" placeholder="объём" />
+        <input type="number"  class="form-control"  th:field="*{car.volume}" id="volume" placeholder="объём" onkeyup="return isDigit(this);" onchange="return isDigit(this)"/>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <label for="id_engineT">Двигатель (бензин/дизель...):</label>
-        <input type="text"  class="form-control"  th:field="*{car.id_engineT}" id="id_engineT" placeholder="Двигатель (топливо)" />
+        <select name="id_engineT" id="id_engineT">
+            <option th:each="thisenginetype: ${carEngineType}" th:value="${thisenginetype.id}" th:selected="${thisenginetype.id} == ${id_enginetype}">
+                <span th:text="${thisenginetype.name}"> name </span></option>
+        </select>
     </div>
     <div class="form-group">
         <label for="estimatedPower">Расчётная мощность:</label>
-        <input type="text"  class="form-control"  th:field="*{car.estimatedPower}" id="estimatedPower" placeholder="Расчётная мощность" />
+        <input type="number"  class="form-control"  th:field="*{car.estimatedPower}" id="estimatedPower" placeholder="Расчётная мощность" onkeyup="return isDigit(this);" onchange="return isDigit(this)"/>
+        <script type="text/javascript">
+            function isDigit(input) {
+                input.value = input.value.replace(/[^\d,]/g, '');
+            };
+        </script>
     </div>
     <div class="form-group">
         <label for="year">Год выпуска:</label>
-        <input type="text"  class="form-control"  th:field="*{car.year}" id="year" placeholder="Год выпуска" />
+        <input type="number" class="form-control"  th:field="*{car.year}" id="year" placeholder="Год выпуска" onkeyup="return isDigit(this);" onchange="return isDigit(this)"/>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <label for="id_accelerationT">Модуль ускорения:</label>
-        <input type="text"  class="form-control"  th:field="*{car.id_accelerationT}" id="id_accelerationT" placeholder="Ускорение" />
+        <select name="id_accelerationT" id="id_accelerationT">
+            <option th:each="thisaccelerationtype: ${carAccelerationType}" th:value="${thisaccelerationtype.id}" th:selected="${thisaccelerationtype.id} == ${id_accelerationtype}">
+                <span th:text="${thisaccelerationtype.name}"> name </span></option>
+        </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <label for="id_boostT">Наддув:</label>
-        <input type="text"  class="form-control"  th:field="*{car.id_boostT}" id="id_boostT" placeholder="Наддув" />
+        <select name="id_boostT" id="id_boostT">
+            <option th:each="thisboosttype: ${carBoostType}" th:value="${thisboosttype.id}" th:selected="${thisboosttype.id} == ${id_boosttype}">
+                <span th:text="${thisboosttype.name}"> name </span></option>
+        </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <label for="id_gearBoxT">Тип трансмиссии:</label>
-        <input type="text"  class="form-control"  th:field="*{car.id_gearBoxT}" id="id_gearBoxT" placeholder="Трансмиссия" />
+        <select name="id_gearBoxT" id="id_gearBoxT">
+            <option th:each="thisgearboxtype: ${carGearBoxType}" th:value="${thisgearboxtype.id}" th:selected="${thisgearboxtype.id} == ${id_gearboxtype}">
+                <span th:text="${thisgearboxtype.name}"> name </span></option>
+        </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <label for="id_prevailingColorT">Основной цвет:</label>
-        <input type="text"  class="form-control"  th:field="*{car.id_prevailingColorT}" id="id_prevailingColorT" placeholder="Цвет" />
+        <select name="id_prevailingColorT" id="id_prevailingColorT">
+            <option th:each="thisprevailingcolortype: ${carPrevailingColorType}"
+                    th:value="${thisprevailingcolortype.id}" th:selected="${thisprevailingcolortype.id} == ${id_prevailingcolortype}">
+                <span th:text="${thisprevailingcolortype.name}"> name </span></option>
+        </select>
     </div>
     <div class="form-group">
         <label for="imgCarPath">Путь к фото автомобиля:</label>
@@ -64,10 +103,11 @@
     </div>
     <div class="form-group">
         <label for="isPrimary">Основной автомобиль:</label>
-        <input type="text"  class="form-control"  th:field="*{car.isPrimary}" id="isPrimary" placeholder="Основной" />
+        <input type="checkbox" th:field="*{car.Primary}" id="isPrimary"/>
     </div>
-
-    <button type="submit" th:value="Save" class="btn btn-primary">Submit</button>
+</form>
+<form action="#" th:action="@{/car/add}" method="post">
+    <button type="submit" th:value="Save" class="btn btn-primary" th:name="car">Submit</button>
 </form>
 
 <script src="/webjars/jquery/3.4.1/jquery.js"></script>

@@ -34,7 +34,7 @@
 
 <form action="#" th:action="@{/car/addBrand}" <!--th:object="${brand}-->"
       method="post">
-    <select>
+    <select name="achievementsId">
         <option th:each="thisAchievement: ${achievements}" th:value="${thisAchievement.id}">
             <span th:text="${thisAchievement.name}"> name </span></option>
     </select>

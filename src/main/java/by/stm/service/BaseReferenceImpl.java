@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class BaseReferenceImpl implements BaseReference {
@@ -41,19 +42,19 @@ public class BaseReferenceImpl implements BaseReference {
         final Random random = new Random();
         carBrandTypeList.add(
                 CarBrandType.builder()
-                        .id(random.nextInt(1))
+                        .id(1)
                         .name("BMW")
                         .build()
         );
         carBrandTypeList.add(
                 CarBrandType.builder()
-                        .id(random.nextInt(2))
+                        .id(2)
                         .name("Mercedes")
                         .build()
         );
         carBrandTypeList.add(
                 CarBrandType.builder()
-                        .id(random.nextInt(3))
+                        .id(3)
                         .name("Audi")
                         .build()
         );
@@ -185,6 +186,18 @@ public class BaseReferenceImpl implements BaseReference {
             case REF_WHEELDRIVE:{ return carWheelDriveTypeList; }
             case REF_PURPOSE:{ return purposeTypeList; }
             default:{return null;}
+        }
+    }
+
+    @Override
+    public List getListByParentId(int idRef, int idParent) {
+        switch (idRef){
+            case REF_MODEL:{
+                return carModelTypeList.stream()
+                        .filter(brand -> brand.getId_brand() == idParent)
+                        .collect(Collectors.toList());
+            }
+            default: { return null; }
         }
     }
 
