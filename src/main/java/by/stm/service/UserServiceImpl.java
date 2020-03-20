@@ -3,6 +3,8 @@ package by.stm.service;
 import by.stm.domain.User;
 import org.springframework.stereotype.Service;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,18 @@ public class UserServiceImpl implements UserService {
 
     private List<User> userList = new ArrayList<>();
     private String lastError = "";
+
+    //--Валидация email
+    private boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
+    }
 
     @Override
     public List getUserList() {
@@ -32,7 +46,8 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User newUser) {
         //--пока с базой не работаем - игнорируем ошибки
         boolean result = true;
-        userList.add(newUser);
+        if (isValidEmailAddress(newUser.getEmail())) { userList.add(newUser); }
+        else { result = false;}
         return result;
     }
 
