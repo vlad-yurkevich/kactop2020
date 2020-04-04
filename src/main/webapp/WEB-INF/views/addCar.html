@@ -17,7 +17,6 @@
 <body>
 
 <p>Добавление автомобиля</p>
-
 <form action="#" th:action="@{/car/refresh}" method="post" id="MyForm">
     <div class="form-group">
         <label for="id_brand">Марка:</label>
@@ -105,10 +104,14 @@
         <label for="isPrimary">Основной автомобиль:</label>
         <input type="checkbox" th:field="*{car.Primary}" id="isPrimary"/>
     </div>
+    <div class="form-group">
+        <button type="submit" th:value="1" class="btn btn-primary" th:name="car_add_id" id="isAdd">Submit</button>
+    </div>
 </form>
-<form action="#" th:action="@{/car/add}" method="post">
-    <button type="submit" th:value="Save" class="btn btn-primary" th:name="car">Submit</button>
-</form>
+<!--<form action="#" th:action="@{/car/add}" method="post">
+
+</form>-->
+
 
 <script src="/webjars/jquery/3.4.1/jquery.js"></script>
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>

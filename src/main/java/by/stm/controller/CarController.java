@@ -62,21 +62,16 @@ public class CarController {
         model.addAttribute("carBoostType", baseReference.getList(BaseReferenceImpl.REF_BOOST));
         model.addAttribute("carGearBoxType", baseReference.getList(BaseReferenceImpl.REF_GEARBOX));
         model.addAttribute("carPrevailingColorType", baseReference.getList(BaseReferenceImpl.REF_PREVAILINGCOLOR));
-        boolean myBooleanVariable = false;
+        boolean myBooleanVariable = true;
         model.addAttribute("myBooleanVariable", myBooleanVariable);
-        model.addAttribute("car", new Car());
-        return "addCar";
-    }
-
-    @PostMapping(value = "/car/add")
-    public String addCar(@ModelAttribute(value = "car") Car car, Model model, @RequestBody String note) {
-        carService.addCar(car);
         model.addAttribute("car", new Car());
         return "addCar";
     }
 
     @PostMapping (value = "/car/refresh")
     public String refreshCar(@ModelAttribute(value = "car") Car car, @RequestParam(value = "id_brand") int id_brand, Model model, @RequestBody String note) {
+        boolean addCar = false;
+        if (note.contains("car_add_id")) { addCar = true; }
         model.addAttribute("id_brand", id_brand);
         model.addAttribute("carBrand", baseReference.getList(BaseReferenceImpl.REF_BRAND));
         model.addAttribute("CarModel",  baseReference.getListByParentId(BaseReferenceImpl.REF_MODEL, id_brand));
@@ -92,7 +87,11 @@ public class CarController {
         model.addAttribute("carGearBoxType", baseReference.getList(BaseReferenceImpl.REF_GEARBOX));
         model.addAttribute("id_prevailingcolortype", car.getId_prevailingColorT());
         model.addAttribute("carPrevailingColorType", baseReference.getList(BaseReferenceImpl.REF_PREVAILINGCOLOR));
-        model.addAttribute("car", car);
+        if (!addCar){ model.addAttribute("car", car); }
+        else {
+            carService.addCar(car);
+            model.addAttribute("car", new Car());
+        }
         return "addCar";
     }
 }

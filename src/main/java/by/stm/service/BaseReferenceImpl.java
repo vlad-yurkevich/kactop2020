@@ -4,8 +4,11 @@ import by.stm.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -35,9 +38,11 @@ public class BaseReferenceImpl implements BaseReference {
     List<CarPrevailingColorType> carPrevailingColorTypeList = new ArrayList<>();
     List<CarWheelDriveType> carWheelDriveTypeList = new ArrayList<>();
     List<PurposeType> purposeTypeList = new ArrayList<>();
+    List<RacingTrack> racingTrackList = new ArrayList<>();
+    List<TrackList> trackList = new ArrayList<>();
 
     @PostConstruct
-    public void init(){
+    public void init() throws ParseException {
         //--Заполняем бренды автомобилей
         final Random random = new Random();
         carBrandTypeList.add(
@@ -163,7 +168,12 @@ public class BaseReferenceImpl implements BaseReference {
         purposeTypeList.add(new PurposeType(3, "Общение/чай/кофе"));
         purposeTypeList.add(new PurposeType(4, "Переговоры о команде"));
         purposeTypeList.add(new PurposeType(5, "Предложение по съёмке"));
-
+        //--Треки
+        racingTrackList.add(new RacingTrack(1, "Первый трек", 100.0, 500.0, "Минск", "Ссылка на гуглМап 1", "Картинка с траекторией 1", 0, 1.0, 1, "Описание 1", true));
+        racingTrackList.add(new RacingTrack(2, "Второй трек", 200.0, 600.0, "Брест", "Ссылка на гуглМап 2", "Картинка с траекторией 2", 1, 2.0, 2, "Описание 2", false));
+        //--Трек-листы
+        trackList.add(new TrackList(1, 1, new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2020-03-20T12:00")));
+        trackList.add(new TrackList(2, 2, new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2020-01-17T19:00")));
  }
 
     @Override
